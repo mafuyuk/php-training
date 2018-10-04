@@ -1,0 +1,28 @@
+version: '2'
+services:
+  app:
+    build: ./app
+    ports:
+    - 8000:8000
+    working_dir: /var/www/app
+    environment:
+    - PHP_EXTRA_CONFIGURE_ARGS="--enable-mailparse"
+    volumes:
+    - ./app:/var/www/app
+    command: php artisan serve
+    depends_on:
+    - db
+    - redis
+  db:
+    image: mysql:5.6
+    ports:
+    - 3306:3306
+    environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=demo
+    - MYSQL_USER=user
+    - MYSQL_PASSWORD=pass
+  redis:
+    image: redis:4.0
+    ports:
+    - 6379:6379
