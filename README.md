@@ -2,6 +2,6 @@
 
 ```bash
 $ docker-compose up -d
-$ docker exec -it 565bf85014d6 /bin/bash
+$ docker exec -it php-training_app_1 /bin/bash
 $ docker-compose logs app
 ```
